@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio | batman</title>
+  <meta name="description" content="Portfolio of computer science projects by batman" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">batman</h1>
+      <nav>
+        <ul class="nav">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="container">
+        <h2>Hi, I'm <span class="accent">batman</span>.</h2>
+        <p class="subtitle"> Seeking to equip my aspiring profession in mathematical computing with innovation, intelligence, and
+integrity by seizing opportunities for research, robust education, and reputable character.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <h3 class="section-title">Featured Projects</h3>
+        <div class="projects-grid" id="projects-grid">
+          <!-- Project cards injected by script.js -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container narrow">
+        <h3 class="section-title">About Me</h3>
+        <p>I am a dual-major student in Mathematics (Statistics concentration) and Computer Science (AI concentration) at UNC Charlotte (expected May 2026). My work centers on mathematical computing, machine learning, and data systems. I researched denoising diffusion probabilistic models, evaluated implementations on MNIST, and reported quantitative performance metrics. I build data pipelines and analyses in Python (pandas), create statistical visualizations in R, and have experience collecting and preprocessing VR eye-tracking datasets. Relevant coursework includes Data Structures & Algorithms, Intro to Machine Learning, Probability, Applied Regression, Time Series, and Operating Systems. Research and teaching roles have strengthened my reproducible-research practices and technical communication.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> batcavern. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
