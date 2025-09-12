@@ -123,6 +123,22 @@ a:hover { text-decoration: underline; }
   color: var(--text-dim); 
   text-align: center; 
 }
+.source-code-link { 
+  margin: 1.5rem 0; 
+  text-align: center; 
+}
+.source-code-link .btn { 
+  background: var(--bg-alt); 
+  border: 1px solid var(--accent); 
+  color: var(--accent); 
+  font-weight: 500; 
+  transition: var(--transition); 
+}
+.source-code-link .btn:hover { 
+  background: var(--accent); 
+  color: var(--bg); 
+  text-decoration: none; 
+}
 
 @media (max-width: 640px) {
   .hero { padding: 96px 0 64px; }
