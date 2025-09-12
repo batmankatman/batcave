@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project One - Activity Time Tracking Analysis | batman</title>
+  <meta name="description" content="Activity Time Tracking Analysis - Personal time tracking data analysis project" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo"><a href="index.html">batman</a></h1>
+      <nav>
+        <ul class="nav">
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container narrow">
+        <div class="project-header">
+          <h1>Activity Time Tracking Analysis</h1>
+          <a class="btn" href="index.html#projects">← Back to Projects</a>
+        </div>
+
+        <div class="project-content">
+          <h2>Overview</h2>
+          <p>This project analyzes personal time tracking data covering 8 weeks (4 pairs of two-week periods) of comprehensive activity logging from waking to sleeping hours. The analysis processes raw time-stamped activity logs and generates detailed metrics, visualizations, and quality reports.</p>
+
+          <h2>Data Structure</h2>
+          
+          <h3>Time Tracking Format</h3>
+          <ul>
+            <li><strong>Granularity</strong>: Activities logged with military time timestamps (HHMM format)</li>
+            <li><strong>Coverage</strong>: Complete daily coverage from wake-up to sleep</li>
+            <li><strong>Duration</strong>: 8 total weeks of data</li>
+            <li><strong>Organization</strong>: Sequential daily segments with header information</li>
+          </ul>
+
+          <h3>Activity Categories</h3>
+          <p>The system uses a structured categorization approach with the following primary categories:</p>
+          <ul>
+            <li><strong>GOD</strong>: Spiritual and religious activities</li>
+            <li><strong>P</strong>: Program/academic work</li>
+            <li><strong>R</strong>: Research activities</li>
+            <li><strong>E</strong>: Exercise and physical activities</li>
+            <li><strong>S</strong>: Social interactions and communication</li>
+            <li><strong>F</strong>: Fun and recreational activities</li>
+            <li><strong>W</strong>: Workout activities (distinct from general exercise)</li>
+            <li><strong>LO</strong>: Sleep/lights out marker</li>
+          </ul>
+
+          <h2>Measurement Methodology</h2>
+          
+          <h3>Time Calculation</h3>
+          <ul>
+            <li>Activities are measured in <strong>minutes</strong> with automatic duration calculation</li>
+            <li>Durations computed based on timestamp intervals between consecutive entries</li>
+            <li>Midnight crossovers handled automatically</li>
+            <li>Sleep periods calculated from LO markers to day-end boundaries</li>
+          </ul>
+
+          <h3>Data Processing</h3>
+          <ul>
+            <li><strong>5-minute time slots</strong>: Complete timeline broken into 5-minute increments</li>
+            <li><strong>Weekly aggregation</strong>: Data grouped into sequential 7-day blocks</li>
+            <li><strong>Category totals</strong>: Time spent per category tracked across all periods</li>
+            <li><strong>Quality validation</strong>: Automatic detection and flagging of timestamp inconsistencies</li>
+          </ul>
+
+          <h3>Visualizations</h3>
+          <ul>
+            <li><strong>Sequential block charts</strong>: Stacked bar charts showing daily hours across 7-day periods</li>
+            <li><strong>Category breakdown</strong>: Visual representation of time allocation patterns</li>
+            <li><strong>Weekly progression</strong>: Tracking changes in activity patterns over time</li>
+          </ul>
+
+          <h2>Key Metrics Tracked</h2>
+          <ul>
+            <li>Total time per category across all weeks</li>
+            <li>Weekly category distributions</li>
+            <li>Daily activity patterns</li>
+            <li>Sleep vs. awake time ratios</li>
+            <li>Activity transition</li>
+          </ul>
+
+          <div class="project-visualization">
+            <h2>Analysis Results</h2>
+            <img src="p1/barchart.png" alt="Activity Time Tracking Bar Chart Analysis" class="project-image" />
+          </div>
+
+          <p class="project-footer"><em>Analysis covers comprehensive personal time tracking with minute-level precision across 8 weeks of daily activity logging.</em></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> batcavern. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function setYear() {
+      const el = document.getElementById('year');
+      if (el) el.textContent = new Date().getFullYear();
+    }
+    window.addEventListener('DOMContentLoaded', setYear);
+  </script>
+</body>
+</html>

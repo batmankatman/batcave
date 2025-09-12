@@ -1,9 +1,9 @@
 const projects = [
   {
     title: 'Project One',
-    description: 'schedules via retrospection',
-    url: '#',
-    tags: ['Python']
+    description: 'Activity Time Tracking Analysis - 8 weeks of comprehensive personal time tracking with minute-level precision',
+    url: 'project-one.html',
+    tags: ['Python', 'Data Analysis']
   },
   {
     title: 'Project Two',
