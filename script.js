@@ -7,7 +7,7 @@ const projects = [
   },
   {
     title: 'Project Two',
-    description: 'project project',
+    description: 'TBD',
     url: '#',
     tags: ['JavaScript']
   }
