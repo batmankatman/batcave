@@ -9,7 +9,7 @@ const projects = [
     title: 'Project Two',
     description: 'TBD',
     url: '#',
-    tags: ['JavaScript']
+    tags: ['Dashboards bb 😎']
   }
 ];
 

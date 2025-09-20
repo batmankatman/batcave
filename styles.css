@@ -108,6 +108,20 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius); 
   border: 1px solid #21262d; 
 }
+.analysis-chart { 
+  margin: 2.5rem 0; 
+  padding: 1.5rem; 
+  background: var(--bg); 
+  border-radius: var(--radius); 
+  border: 1px solid #21262d; 
+}
+.chart-description { 
+  margin-top: 1rem; 
+  color: var(--text-dim); 
+  font-style: italic; 
+  line-height: 1.6; 
+  text-align: left; 
+}
 .project-image { 
   max-width: 100%; 
   height: auto; 
