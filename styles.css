@@ -153,6 +153,24 @@ a:hover { text-decoration: underline; }
   color: var(--bg); 
   text-decoration: none; 
 }
+.quote-box { 
+  margin: 2rem 0; 
+  padding: 1.5rem; 
+  background: var(--bg-alt); 
+  border-left: 4px solid var(--accent); 
+  border-radius: var(--radius); 
+  color: var(--text-dim); 
+}
+.quote-box p { 
+  margin: 0.5rem 0; 
+  font-style: italic; 
+  line-height: 1.6; 
+}
+.quote-author { 
+  text-align: right; 
+  font-weight: 500; 
+  margin-top: 1rem !important; 
+}
 
 @media (max-width: 640px) {
   .hero { padding: 96px 0 64px; }

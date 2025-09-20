@@ -27,7 +27,8 @@
     <section class="section">
       <div class="container narrow">
         <div class="project-header">
-          <h1>Activity Time Tracking Analysis</h1>
+          <h1>Where Does Time Go? I found out.</h1>
+          <h2>(Activity Time Tracking Analysis)</h2>
           <a class="btn" href="index.html#projects">← Back to Projects</a>
         </div>
 
@@ -36,6 +37,7 @@
           <p>Many have searched for a strong, organized schedule to tell them what to do, but what about the schedule that occurred last week: Did it transpire how we imagined it to? What about the week before? The semester? Does anything go along with our schedule? Hopefully most thing, but how about measuring with precision the statements like, “I should be able to make it this weekend”, “That project took me all day”, and pick apart the verity of statements like “I just don’t have time.” Whilst confidently promising other exchanges like “Bro, I’ll be open after work this weekend,” I got pretty tired of overestimating my availability. Thus, <strong>the goal of this project is to give a strong glimpse into <em>how much availability</em> we really have</strong> in the day and through the week (based on our regular time for non-negotiables like routine, work, and school as well as negotiable like personal time, socializing, and spontaneous pockets).</p>
           <h2>Project Description</h2>
           <p>This project analyzes personal time tracking data covering 8 weeks (4 pairs of two-week periods) of comprehensive activity logging from waking to sleeping hours. The analysis processes raw time-stamped activity logs and generates detailed metrics, visualizations, and qualitative reports.</p>
+          <p><em>*Definitely was undergirded by my artificially intelligent friend named Claude in making these visualizations for my project ⭐️</em></p>
 
           <h2>Data Structure</h2>
           
@@ -44,7 +46,7 @@
             <li><strong>Simple</strong>: Activities logged with military time timestamps (HHMM format)</li>
             <li><strong>Comprehensive</strong>: Complete daily coverage from wake-up to sleep</li>
             <li><strong>Thorough</strong>: 8 total weeks of data</li>
-            <li><strong>Organized</strong>: Sequential daily segments with header information for eac hday</li>
+            <li><strong>Organized</strong>: Sequential daily segments with header information for each day</li>
           </ul>
 
           <h3>Activity Categories</h3>
@@ -80,7 +82,7 @@
 
           <h3>Visualizations</h3>
           <ul>
-            <li><strong>Sequential block charts</strong>: Stacked bar charts showing daily hours across 7-day periods</li>
+            <li><strong>Grouped charts</strong>: Stacked bar charts showing daily hours across 7-day periods</li>
             <li><strong>Category breakdown</strong>: Visual representation of patterns in how time is allocated across categories</li>
             <li><strong>Weekly progression</strong>: Tracking changes in activity patterns over time</li>
           </ul>
@@ -90,56 +92,54 @@
             <li>Total time per category across all weeks</li>
             <li>Weekly category distributions</li>
             <li>Daily activity patterns</li>
-            <li>Sleep vs. awake time ratios</li>
-            <li>Activity transition</li>
+            <li>Sleep vs. awake time </li>
           </ul>
 
           <div class="project-visualization">
             <h2>Analysis Results</h2>
             <p>The comprehensive analysis generated multiple visualizations to understand time allocation patterns across the 8-week tracking period:</p>
             
+            <p>I have chosen these charts in order to find out some of these indicators of non-intuitive time spending because as you'll see some of these graphs do not reflect what I think (and possibly what you would think) is where your time and your day goes. So let's find out. 😎</p>
+            
             <div class="analysis-chart">
               <img src="graphs1.png" alt="Time Tracking Analysis Graph 1" class="project-image" />
-              <p class="chart-description">This visualization shows the overall time distribution across major activity categories. The data reveals clear patterns in how time is allocated between work, personal activities, and routine tasks throughout the tracking period.</p>
+              <p class="chart-description"> Ever wondered how much time you actually spend on your homework versus your time you spend in the classroom? *they say you should spend two hours outside the classroom as you do inside the classroom...*.</p>
             </div>
 
             <div class="analysis-chart">
               <img src="graphs2.png" alt="Time Tracking Analysis Graph 2" class="project-image" />
-              <p class="chart-description">Weekly progression analysis demonstrates how activity patterns evolved over the 8-week period. Notable shifts in time allocation can be observed as routines were established and adjusted.</p>
+              <p class="chart-description">Here it is plain, and simple.</p>
             </div>
 
             <div class="analysis-chart">
               <img src="graphs3.png" alt="Time Tracking Analysis Graph 3" class="project-image" />
-              <p class="chart-description">Daily activity breakdown provides insight into typical day structures and identifies peak periods for different categories of activities. This granular view helps understand optimal scheduling windows.</p>
+              <p class="chart-description">Here's the week split! A little too much routine... I promise, I don't have that much routine. (Note that *routine* includes driving, walking, getting ready for the morning or night, and the facilties 😉).</p>
             </div>
 
             <div class="analysis-chart">
               <img src="graphs4.png" alt="Time Tracking Analysis Graph 4" class="project-image" />
-              <p class="chart-description">Category comparison analysis highlights the relative time investment across spiritual, academic, social, and recreational activities. This data-driven perspective reveals actual versus perceived time allocation.</p>
+              <p class="chart-description">Now you can see each bar representing a different activity category, making it easier to compare time spent across various tasks.</p>
             </div>
 
             <div class="analysis-chart">
               <img src="graphs5.png" alt="Time Tracking Analysis Graph 5" class="project-image" />
-              <p class="chart-description">Sleep pattern analysis tracks consistency in rest schedules and identifies correlations between sleep timing and daily productivity metrics. This information supports evidence-based schedule optimization.</p>
+              <p class="chart-description">I still don't know that this graph is proportionate to the previous one... But you get the idea.</p>
             </div>
 
             <div class="analysis-chart">
               <img src="graphs6.png" alt="Time Tracking Analysis Graph 6" class="project-image" />
-              <p class="chart-description">Comprehensive temporal mapping shows the complete 8-week timeline with activity density and transition patterns. This macro view enables identification of longer-term trends and seasonal variations in behavior.</p>
-            </div>
-
-            <div class="analysis-chart">
-              <img src="p1/barchart.png" alt="Activity Time Tracking Bar Chart Analysis" class="project-image" />
-              <p class="chart-description">The final bar chart synthesis presents the cumulative findings in a clear, actionable format. This summary visualization serves as the primary reference for understanding overall time allocation effectiveness and availability patterns.</p>
+              <p class="chart-description">Just for demonstration--this is the struggle of making your own dtaset! This is how I catch anomalies, because I'm pretty sure I didn't spend *36 hours on Routine in a single day*....</p>
             </div>
           </div>
 
-          <p>I have chosen these charts in order to find out some of these indicators of non-intuitive time spending because as you'll see some of these graphs do not reflect what I think (and possibly what you would think) is where your time and your day goes. So let's find out. 😎</p>
-
-          <h3>Reflection</h3>
-          <p>A lot of the code and graph generation worked, but there were so many anomalies and they're still just a couple left in the data that were hard to clean out, and that I will clean out for project 2. I would definitely change about this to clean all of my code 1st thoroughly and it's OK if some miss but this is a necessary step for any data scientist. 😜</p>
-
           <h2>Conclusion</h2>
+          <p>So there you have it that's where *my* time went, and I sure do spend a lot more time doing the routine things, even though I thought that that was one of my strongest categories of reduction… But, I give myself the benefit of the doubt that perhaps I have some more data cleaning to do, or I just have to accept the fact that I am high maintenance :( I am quite interested in caging the best ways to be productive and so I actually hope to take this program to apply it to other people who will observe their own time or, *if they're willing*, I can track it for them. And overall, we can become more time cognizant, and seeing how we spend our time and carefully choose our days wisely.</p>
+          
+          <div class="quote-box">
+            <p><em>"It's not that we have a short time to live, it's that we waste much of it. Life is long if you know how to use it. Most of us spend it in distraction or the pursuit of things that don't really matter, as if we were going to live forever. We act as mortals in all we fear and immortals in all we desire."</em></p>
+            <p class="quote-author">-Seneca, On the Shortness of Life</p>
+          </div>
+
           <ul>
             <li>Coming soon-></li>
           </ul>
@@ -147,8 +147,8 @@
           <h2>Technical Report</h2>
           <p>The complete data processing pipeline is implemented in Python, handling everything from raw data ingestion to visualization generation. The script processes time-stamped activity logs, performs data validation, and generates comprehensive analytics.</p>
           <div class="source-code-link">
-            <a href="p1/activity_pipeline.py" class="btn" target="_blank" rel="noopener">
-              📄 View Source Code (activity_pipeline.py)
+            <a href="https://drive.google.com/drive/folders/1Zfg8kWkg2AVOpxpRSpiQZupVQczQwcFs?usp=sharing" class="btn" target="_blank" rel="noopener">
+              � View Project Files & Notebooks
             </a>
           </div>
 
