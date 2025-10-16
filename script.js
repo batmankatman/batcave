@@ -7,9 +7,9 @@ const projects = [
   },
   {
     title: 'Project Two',
-    description: 'TBD',
-    url: '#',
-    tags: ['Dashboards bb 😎']
+    description: 'Interactive Time Tracking Dashboard - Live Streamlit app with dynamic visualizations and insights',
+    url: 'https://personal-time-tracker-jk5m8slvssdp748bny2wbr.streamlit.app',
+    tags: ['Python', 'Streamlit', 'Dashboard', 'Interactive']
   }
 ];
 

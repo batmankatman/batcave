@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Tracking Dashboard | batman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --bg-alt: #161b22;
+      --text: #c9d1d9;
+      --text-dim: #8b949e;
+      --accent: #58a6ff;
+      --border: #30363d;
+      --success: #3fb950;
+      --warning: #f85149;
+      --radius: 8px;
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    .dashboard-header {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .time-period-selector {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .controls-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      align-items: end;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .control-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-dim);
+    }
+
+    select, input[type="range"] {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 8px 12px;
+      color: var(--text);
+      font-size: 0.875rem;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slider-value {
+      font-weight: 600;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    /* Main Grid Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    /* Main Visualization Area */
+    .main-viz {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .viz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .viz-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .chart-placeholder {
+      height: 300px;
+      background: linear-gradient(135deg, var(--bg) 0%, var(--border) 100%);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .category-charts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .category-chart {
+      height: 200px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      font-size: 0.875rem;
+    }
+
+    /* Sidebar KPI Cards */
+    .kpi-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .kpi-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      transition: var(--transition);
+    }
+
+    .kpi-card:hover {
+      border-color: var(--accent);
+    }
+
+    .kpi-header {
+      display: flex;
+      justify-content: between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .kpi-title {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-dim);
+    }
+
+    .kpi-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .kpi-trend {
+      font-size: 0.75rem;
+      margin-top: 4px;
+    }
+
+    .trend-up {
+      color: var(--success);
+    }
+
+    .trend-down {
+      color: var(--warning);
+    }
+
+    .kpi-progress {
+      width: 100%;
+      height: 8px;
+      background: var(--bg);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .kpi-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--success));
+      transition: var(--transition);
+    }
+
+    /* Bottom Section */
+    .bottom-section {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+    }
+
+    .timeline-view, .trend-analysis {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .timeline-chart {
+      height: 200px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-dim);
+      margin-top: 16px;
+    }
+
+    .insights-list {
+      list-style: none;
+      margin-top: 16px;
+    }
+
+    .insight-item {
+      padding: 12px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      font-size: 0.875rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    .availability-windows {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 24px;
+    }
+
+    .window-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .day-column {
+      text-align: center;
+    }
+
+    .day-header {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .time-block {
+      height: 20px;
+      margin-bottom: 2px;
+      border-radius: 2px;
+      background: var(--border);
+    }
+
+    .available {
+      background: var(--success);
+    }
+
+    .busy {
+      background: var(--warning);
+    }
+
+    .routine {
+      background: var(--accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .dashboard-grid,
+      .bottom-section {
+        grid-template-columns: 1fr;
+      }
+
+      .controls-row {
+        grid-template-columns: 1fr;
+      }
+
+      .category-charts {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header Section -->
+    <div class="dashboard-header">
+      <div class="header-top">
+        <h1 class="dashboard-title">Time Tracking Dashboard</h1>
+        <div class="time-period-selector">
+          <span class="control-label">Viewing: Week 5 of 8</span>
+        </div>
+      </div>
+      
+      <div class="controls-row">
+        <div class="control-group">
+          <label class="control-label">Category Filter</label>
+          <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="GOD">GOD - Spiritual</option>
+            <option value="P">P - Program/Academic</option>
+            <option value="R">R - Routine</option>
+            <option value="E">E - Exercise</option>
+            <option value="S">S - Social</option>
+            <option value="F">F - Fun/Recreation</option>
+            <option value="W">W - Workout</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label class="control-label">Date Range</label>
+          <select id="dateRange">
+            <option value="week">Current Week</option>
+            <option value="2weeks">Last 2 Weeks</option>
+            <option value="month">Last Month</option>
+            <option value="all">All 8 Weeks</option>
+          </select>
+        </div>
+        
+        <div class="control-group slider-container">
+          <label class="control-label">Week Selector</label>
+          <input type="range" id="weekSlider" min="1" max="8" value="5" step="1">
+          <div class="slider-value" id="weekValue">Week 5</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Dashboard Grid -->
+    <div class="dashboard-grid">
+      <!-- Main Visualization Area -->
+      <div class="main-viz">
+        <div class="viz-header">
+          <h2 class="viz-title">Weekly Time Distribution</h2>
+          <select id="chartType">
+            <option value="stacked">Stacked Bar Chart</option>
+            <option value="timeline">Timeline View</option>
+            <option value="heatmap">Activity Heatmap</option>
+          </select>
+        </div>
+        
+        <div class="chart-placeholder">
+          Primary Time Allocation Chart<br>
+          <small>(Interactive visualization would render here)</small>
+        </div>
+        
+        <div class="category-charts">
+          <div class="category-chart">
+            Category Breakdown<br>
+            Pie Chart
+          </div>
+          <div class="category-chart">
+            Daily<br>
+            Hour Distribution
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Sidebar -->
+      <div class="kpi-sidebar">
+        <!-- Productivity Ratio -->
+        <div class="kpi-card">
+          <div class="kpi-title">Productivity Ratio</div>
+          <div class="kpi-value">68.5%</div>
+          <div class="kpi-trend trend-up">↗ +3.2% from last week</div>
+          <div class="kpi-progress">
+            <div class="kpi-progress-bar" style="width: 68.5%"></div>
+          </div>
+        </div>
+
+        <!-- Sleep Consistency -->
+        <div class="kpi-card">
+          <div class="kpi-title">Sleep Consistency</div>
+          <div class="kpi-value">7.2h</div>
+          <div class="kpi-trend trend-down">↘ -0.3h avg</div>
+          <div class="kpi-progress">
+            <div class="kpi-progress-bar" style="width: 80%"></div>
+          </div>
+        </div>
+
+        <!-- Efficiency Rank -->
+        <div class="kpi-card">
+          <div class="kpi-title">Efficiency Rank</div>
+          <div class="kpi-value">B+</div>
+          <div class="kpi-trend trend-up">↗ Improved from B</div>
+        </div>
+
+        <!-- Time Inefficiency -->
+        <div class="kpi-card">
+          <div class="kpi-title">Time Inefficiency</div>
+          <div class="kpi-value">12.3%</div>
+          <div class="kpi-trend trend-down">↘ -2.1% improvement</div>
+          <div class="kpi-progress">
+            <div class="kpi-progress-bar" style="width: 12.3%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="bottom-section">
+      <!-- Timeline View -->
+      <div class="timeline-view">
+        <h3 class="viz-title">Detailed Timeline View</h3>
+        <div class="timeline-chart">
+          Hourly Activity Timeline<br>
+          <small>(Gantt-style chart showing daily activity flow)</small>
+        </div>
+      </div>
+
+      <!-- Trend Analysis -->
+      <div class="trend-analysis">
+        <h3 class="viz-title">Weekly Trend Analysis</h3>
+        <ul class="insights-list">
+          <li class="insight-item">
+            <strong>Routine time increased 15%</strong><br>
+            More time spent on maintenance activities
+          </li>
+          <li class="insight-item">
+            <strong>Social time decreased 8%</strong><br>
+            Reduced social interactions this week
+          </li>
+          <li class="insight-item">
+            <strong>Sleep schedule improved</strong><br>
+            More consistent bedtime patterns
+          </li>
+          <li class="insight-item">
+            <strong>Academic focus up 12%</strong><br>
+            Increased program/study time
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Availability Windows -->
+    <!-- <div class="availability-windows">
+      <h3 class="viz-title">Availability Windows</h3>
+      <p style="margin-bottom: 16px; color: var(--text-dim);">
+        Green = Available, Blue = Routine, Red = Busy/Committed
+      </p>
+      
+      <div class="window-grid">
+        <div class="day-column">
+          <div class="day-header">Mon</div>
+          <div class="time-block routine"></div>
+          <div class="time-block available"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block available"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block routine"></div>
+        </div>
+        <div class="day-column">
+          <div class="day-header">Tue</div>
+          <div class="time-block routine"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block available"></div>
+          <div class="time-block available"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block routine"></div>
+        </div>
+        <div class="day-column">
+          <div class="day-header">Wed</div>
+          <div class="time-block routine"></div>
+          <div class="time-block available"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block available"></div>
+          <div class="time-block routine"></div>
+        </div>
+        <div class="day-column">
+          <div class="day-header">Thu</div>
+          <div class="time-block routine"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block available"></div>
+          <div class="time-block available"></div>
+          <div class="time-block available"></div>
+          <div class="time-block routine"></div>
+        </div>
+        <div class="day-column">
+          <div class="day-header">Fri</div>
+          <div class="time-block routine"></div>
+          <div class="time-block available"></div>
+          <div class="time-block available"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block routine"></div>
+        </div>
+        <div class="day-column">
+          <div class="day-header">Sat</div>
+          <div class="time-block routine"></div>
+          <div class="time-block available"></div>
+          <div class="time-block available"></div>
+          <div class="time-block available"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block routine"></div>
+        </div>
+        <div class="day-column">
+          <div class="day-header">Sun</div>
+          <div class="time-block routine"></div>
+          <div class="time-block available"></div>
+          <div class="time-block busy"></div>
+          <div class="time-block available"></div>
+          <div class="time-block available"></div>
+          <div class="time-block routine"></div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <script>
+    // Interactive elements
+    document.getElementById('weekSlider').addEventListener('input', function(e) {
+      const weekValue = document.getElementById('weekValue');
+      weekValue.textContent = `Week ${e.target.value}`;
+      
+      // Update header display
+      const headerWeek = document.querySelector('.time-period-selector span');
+      headerWeek.textContent = `Viewing: Week ${e.target.value} of 8`;
+      
+      // Here you would update all charts and KPIs based on selected week
+      console.log('Week changed to:', e.target.value);
+    });
+
+    document.getElementById('categoryFilter').addEventListener('change', function(e) {
+      console.log('Category filter changed to:', e.target.value);
+      // Update visualizations based on category filter
+    });
+
+    document.getElementById('dateRange').addEventListener('change', function(e) {
+      console.log('Date range changed to:', e.target.value);
+      // Update date range and refresh data
+    });
+
+    document.getElementById('chartType').addEventListener('change', function(e) {
+      console.log('Chart type changed to:', e.target.value);
+      // Switch main visualization type
+    });
+
+    // Simulate data updates
+    function simulateDataUpdate() {
+      // This would connect to your actual data processing pipeline
+      // For now, just demonstrates the interactive concept
+    }
+    
+    // Initialize dashboard
+    console.log('Time Tracking Dashboard initialized');
+  </script>
+</body>
+</html>
