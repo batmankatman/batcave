@@ -7,8 +7,14 @@ const projects = [
   },
   {
     title: 'Project Two',
-    description: 'Interactive Time Tracking Dashboard - Live Streamlit app with dynamic visualizations and insights',
-    url: 'https://personal-time-tracker-jk5m8slvssdp748bny2wbr.streamlit.app',
+    description: 'Previous Time Tracking Dashboard - Earlier version of the time tracking application',
+    url: 'project-two.html',
+    tags: ['Python', 'Streamlit']
+  },
+  {
+    title: 'Project Three',
+    description: 'Personal Time Tracker Dashboard v2 - Enhanced interactive Streamlit app with dynamic visualizations and insights',
+    url: 'https://personal-time-tracker-v2-xs5yszmumrwumhxpktuv8r.streamlit.app',
     tags: ['Python', 'Streamlit', 'Dashboard', 'Interactive']
   }
 ];
